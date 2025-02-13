@@ -14,7 +14,7 @@ def concatenate_json_files(file_paths, output_file="combined.json"):
 
     for file_path in file_paths:
         try:
-            with open(file_path, 'r') as f:
+            with open(file_path, 'r', encoding='utf-8') as f:
                 data = json.load(f)
                 if isinstance(data, list):
                     combined_data.extend(data)
@@ -31,8 +31,8 @@ def concatenate_json_files(file_paths, output_file="combined.json"):
             print(f"Error: Invalid JSON in file: {file_path}")
             return  # Exit if invalid JSON is encountered
 
-    with open(output_file, 'w') as outfile:
-        json.dump(combined_data, outfile, indent=4)
+    with open(output_file, 'w', encoding='utf-8') as outfile:
+        json.dump(combined_data, outfile, indent=4, ensure_ascii=False)
 
     print(f"Successfully concatenated JSON files into {output_file}")
 
